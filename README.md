@@ -155,7 +155,7 @@ wasmedge --dir .:. \
 ![image](asset/openai-chatbot.png)
 
 #### Other Testing
-Testing with prompt
+Testing with prompt and different parameters, below is a command template 
 ```bash
 cd ~/lfx-pretest
 
