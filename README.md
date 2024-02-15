@@ -69,8 +69,8 @@ python run_clm.py \
 
 ## WASMEDGE / WASI-NN llama.cpp Backend
 ### 0. DEPENDENCY
-- LLVM needs to be install by cmake to generate cmake file which need by WASI-NN
-- Enable LLD in LLVM build which also need by WASI-NN
+- LLVM has to install with cmake to generate cmake file which required by WASI-NN
+- Enable LLD in LLVM build which also required by WASI-NN
 ```bash
 # llvm
 git clone https://github.com/llvm/llvm-project
