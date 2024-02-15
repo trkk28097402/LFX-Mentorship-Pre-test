@@ -92,7 +92,7 @@ git checkout hydai/0.13.5_ggml_lts
 export CXXFLAGS="-Wno-error"
 export CUDAARCHS="70"
 
-rm -fr build install
+rm -fr build 
 
 # With CUDA
 cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release \
