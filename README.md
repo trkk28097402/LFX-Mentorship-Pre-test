@@ -41,7 +41,12 @@ pip install -v .
 ```
 
 ### 2. Example
-I choose the language-modeling quantization example to run and it depends on pytorch, moreover, my GPU are not Intel GPU so I only test the CPU version.
+- Language-modeling quantization example
+    - Depends on pytorch
+    - Model: EleutherAI/gpt-neo-125M from transformers
+    - Dataset: wikitext-2-raw-v1 from dataset
+- CPU only
+    - My GPU are not Intel GPU so I only test the CPU version.
 ```bash
 cd examples/huggingface/pytorch/language-modeling/quantization
 pip install -r requirements.txt
@@ -55,7 +60,7 @@ python run_clm.py \
     --quantization_approach PostTrainingStatic \
     --do_train \
     --do_eval \
-    --output_dir . \
+    --output_dir `pwd` \
     --overwrite_output_dir
 ```
 ![image](asset/itrex.png)
