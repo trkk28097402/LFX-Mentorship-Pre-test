@@ -131,7 +131,7 @@ curl -X POST http://127.0.0.1:8080/v1/completions \
     -H 'Content-Type: application/json' \
     -d '{"prompt":["Long long ago, "], "model":"tinyllama"}'
 ```
-![image](asset/llama-talk.png)
+![image](asset/llama-respond.png)
 
 #### Web UI
 ```bash
