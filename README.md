@@ -45,7 +45,7 @@ pip install -v .
 - Language-modeling quantization example
     - Depends on pytorch
     - Model: EleutherAI/gpt-neo-125M from transformers
-    - Dataset: wikitext-2-raw-v1 from dataset
+    - Dataset: wikitext-2-raw-v1 from datasets
 - CPU only
     - My GPU are not Intel GPU so I only test the CPU version.
 ```bash
