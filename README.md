@@ -18,7 +18,7 @@ nvidia-smi
 
 ## FRAMEWORK / Intel-Extension-For-Transformers
 ### 0. DEPENDENCY
-Since Intel oneAPI2024 base toolkit remove the libmkl_sycl.so.3(need by intel-extension-for-transformers), so I install an additional older version.
+Intel oneAPI2024 remove the libmkl_sycl.so.3(need by intel-extension-for-transformers), so I install an additional older version.
 ```bash
 wget https://registrationcenter-download.intel.com/akdlm/irc_nas/19079/l_BaseKit_p_2023.0.0.25537.sh
 sudo sh ./l_BaseKit_p_2023.0.0.25537.sh
