@@ -35,7 +35,8 @@ git checkout v1.3
 
 # conda setup, using python 3.11
 conda activate lfx
-# add datasets==2.14.6 transformers==4.34.0 torch==2.0.0+cpu to requirements.txt
+
+# add datasets==2.14.6 transformers==4.34.0 torch==2.0.0+cpu to requirements.txt first
 pip install -r requirements.txt
 pip install -v .
 ```
