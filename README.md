@@ -1,4 +1,4 @@
-# LFX PRETEST
+# LFX PRETEST / Intel-Extension-For-Transformers
 ZHANYI LIN
 ## SYSTEM SPEC
 ```bash
@@ -16,20 +16,19 @@ nvidia-smi
 ```
 ![image](asset/nvidia-smi.png)
 
-## FRAMEWORK - Intel-Extension-For-Transformers
+## FRAMEWORK / Intel-Extension-For-Transformers
 ### 0. DEPENDENCY
+Since Intel oneAPI2024 base toolkit remove the libmkl_sycl.so.3, so I install an additional older version.
 ```bash
-# Intel oneAPI2024 base toolkit remove the libmkl_sycl.so.3
-# install an older one instead
 wget https://registrationcenter-download.intel.com/akdlm/irc_nas/19079/l_BaseKit_p_2023.0.0.25537.sh
 sudo sh ./l_BaseKit_p_2023.0.0.25537.sh
-source /opt/intel/2024/setvars.sh # 2024 oneAPI
-source /opt/intel/oneapi/2022/mkl/latest/env/vars.sh
+source /opt/intel/2024/setvars.sh # 2024 oneAPI-base kit
+source /opt/intel/oneapi/2022/mkl/latest/env/vars.sh # 2023 oneAPI-mkl
 ```
 
 ### 1. BUILD
+Build from source, managing environments by miniconda.
 ```bash
-# build from source
 git clone https://github.com/intel/intel-extension-for-transformers.git itrex
 cd itrex
 git checkout v1.3
@@ -42,8 +41,7 @@ pip install -v .
 ```
 
 ### 2. Example
-I choose the language-modeling quantization example to run and it depends on pytorch.
-My GPU cards are not Intel GPU so I only test the cpu version.
+I choose the language-modeling quantization example to run and it depends on pytorch, moreover, my GPU are not Intel GPU so I only test the CPU version.
 ```bash
 cd examples/huggingface/pytorch/language-modeling/quantization
 pip install -r requirements.txt
@@ -63,7 +61,7 @@ python run_clm.py \
 ![image](asset/itrex.png)
 
 
-## WASMEDGE
+## WASMEDGE / WASI-NN llama.cpp Backend
 ### 0. DEPENDENCY
 ```bash
 # llvm
@@ -71,6 +69,7 @@ git clone https://github.com/llvm/llvm-project
 cd llvm-project
 git checkout release/14.x
 cd llvm
+
 cmake -GNinja -Bbuild -DCMAKE_BUILD_TYPE=Release \
     -DLLVM_ENABLE_PROJECTS=lld \
     -DCMAKE_INSTALL_PREFIX=/opt/llvm \
@@ -81,6 +80,10 @@ sudo cmake --install build
 ```
 
 ### 1. BUILD
+- Build from source
+    - LLVM needs to be install by cmake to generate cmake file which need by WASI-NN
+    - Enable LLD in LLVM build which also need by WASI-NN
+- Enable CUDA plugin, since the system have 2 V100 GPU
 ```bash
 cd ~/
 mkdir -p lfx-pretest
@@ -111,6 +114,7 @@ sudo cmake --install build
 ![image](asset/wasm-install.png)
 
 ### 2. Create an OpenAI compatible API server for your LLM
+In my implementation, I choose the GGUF format llama2 7b chat model.
 #### Run the API server via curl
 ```bash
 cd ~/lfx-pretest
@@ -145,6 +149,7 @@ wasmedge --dir .:. \
 ![image](asset/openai-chatbot.png)
 
 #### Other Testing
+Testing with prompt
 ```bash
 cd ~/lfx-pretest
 
